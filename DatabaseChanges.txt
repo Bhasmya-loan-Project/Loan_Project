@@ -1,0 +1,23 @@
+CREATE TABLE Banks (
+    Bank_ID INT PRIMARY KEY,
+    Bank_Name VARCHAR(100),
+    Loan_Type VARCHAR(50),  -- e.g., Home Loan
+    Interest_Rate DECIMAL(5, 2),  -- e.g., 7.5% annual interest
+    Max_Loan_Amount DECIMAL(15, 2),
+    Processing_Fees DECIMAL(15, 2)
+);
+
+
+
+CREATE TABLE Loan_Offers (
+    Offer_ID INT PRIMARY KEY,
+    Customer_ID INT,
+    Bank_ID INT,
+    Interest_Rate DECIMAL(5, 2),
+    Loan_Amount DECIMAL(15, 2),
+    Tenure INT,  -- Loan tenure in years
+    Monthly_EMI DECIMAL(15, 2),
+    Eligibility_Status VARCHAR(20),  -- e.g., Approved, Pending, Rejected
+    FOREIGN KEY (Customer_ID) REFERENCES Customers(Customer_ID),
+    FOREIGN KEY (Bank_ID) REFERENCES Banks(Bank_ID)
+);
